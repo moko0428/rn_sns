@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  FlatList,
   Image,
   SafeAreaView,
   StyleSheet,
@@ -15,40 +16,151 @@ const leftbubble = require('../assets/icons/leftbubbleTriangle.png');
 const rightbubble = require('../assets/icons/rightbubble.png');
 const plus = require('../assets/icons/plus.png');
 
-const MyChat = props => {
+const dummy_data = [
+  {
+    id: 1,
+    name: '이민구',
+    content: '점심 먹었니 친구야',
+    created_data: '12:03PM',
+    position: 'left',
+    profileImg: require('../assets/images/dummyProfile.png'),
+    isOpen: true,
+  },
+  {
+    id: 2,
+    name: '나',
+    content: '아니 아직 안먹었어, 너는 먹었니?',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+  {
+    id: 3,
+    name: '나',
+    content: '안먹었으면 같이 먹을까?? 먹고 싶은 메뉴가 있으면 말해보겠니?',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+  {
+    id: 4,
+    name: '이민구',
+    content:
+      '나는 풍자 또 간집에 나온 소라 편의점의 제육볶음이 너무 먹고싶구나ㅎㅎㅎㅎ',
+    created_data: '12:03PM',
+    position: 'left',
+    profileImg: require('../assets/images/dummyProfile.png'),
+    isOpen: true,
+  },
+  {
+    id: 5,
+    name: '나',
+    content: '그럼 먹으러 가자구~~~',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+  {
+    id: 6,
+    name: '이민구',
+    content: '몇시에 만날래?',
+    created_data: '12:03PM',
+    position: 'left',
+    profileImg: require('../assets/images/dummyProfile.png'),
+    isOpen: true,
+  },
+  {
+    id: 7,
+    name: '나',
+    content: '글쎄, 담주에 시간 되는 날 있어?',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+  {
+    id: 8,
+    name: '이민구',
+    content: '담주 수요일에 만나는건 어떠니',
+    created_data: '12:03PM',
+    position: 'left',
+    profileImg: require('../assets/images/dummyProfile.png'),
+    isOpen: true,
+  },
+  {
+    id: 9,
+    name: '나',
+    content: '앗, 좋아',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+  {
+    id: 10,
+    name: '이민구',
+    content: '몇시에 만날래?',
+    created_data: '12:03PM',
+    position: 'left',
+    profileImg: require('../assets/images/dummyProfile.png'),
+    isOpen: true,
+  },
+  {
+    id: 11,
+    name: '나',
+    content: '글쎄, 몇시가 좋을까 나는 아무때나 상관없어',
+    created_data: '12:03PM',
+    position: 'right',
+    profileImg: require('../assets/icons/plus.png'),
+    isOpen: true,
+  },
+];
+
+const MyChat = ({data, nextData}) => {
   return (
     <View style={[styles.chatRowWrapper, {marginLeft: 'auto'}]}>
-      <View style={styles.chatTimeWrapper}>
-        <Text style={styles.chatTime}>
-          {props.time ? `읽음 ${props.time}` : ''}
-        </Text>
-      </View>
+      {nextData?.position !== data?.position && data.isOpen ? (
+        <View style={styles.chatInfoWrapper}>
+          <Text style={styles.chatTime}>읽음</Text>
+          <View style={styles.microBar} />
+          <Text style={styles.chatTime}>{data.created_data}</Text>
+        </View>
+      ) : nextData?.position !== data?.position && !data.isOpen ? (
+        <View style={styles.chatInfoWrapper}>
+          <Text style={styles.chatTime}>{data.created_data}</Text>
+        </View>
+      ) : (
+        <View />
+      )}
       <View style={styles.myBubbleWrapper}>
-        <Text style={styles.myChat}>{props.chat}</Text>
+        <Text style={styles.myChat}>{data.content}</Text>
       </View>
       <Image source={rightbubble} style={{width: 8, height: 8, marginTop: 6}} />
     </View>
   );
 };
 
-const FriendChat = props => {
+const FriendChat = ({data}) => {
   return (
     <View style={styles.chatRowWrapper}>
-      <Image source={dummyProfile} style={{width: 40, height: 40}} />
+      <Image source={data.profileImg} style={{width: 40, height: 40}} />
       <View style={{marginLeft: 8}}>
-        <Text>이민구</Text>
+        <Text>{data.name}</Text>
         <View style={styles.bubbleContainer}>
           <Image
             source={leftbubble}
             style={{width: 8, height: 8, marginTop: 6}}
           />
           <View style={styles.bubbleWrapper}>
-            <Text>{props.chat}</Text>
+            <Text>{data.content}</Text>
           </View>
         </View>
       </View>
       <View style={styles.chatTimeWrapper}>
-        <Text style={styles.chatTime}>{props.time}</Text>
+        <Text style={styles.chatTime}>{data.created_data}</Text>
       </View>
     </View>
   );
@@ -71,25 +183,26 @@ export default () => {
           <View style={styles.backButton} />
         </View>
         <View style={styles.chattingScreen}>
-          <View style={styles.chatDayWrapper}>
-            <Text
-              style={styles.chatDay}>{`${year}년 ${month}월 ${day}일`}</Text>
-          </View>
-          <FriendChat chat={'점심 먹었니 친구야?'} time={'11:13PM'} />
-          <MyChat chat={'아니 아직 안먹었어, 너는 먹었니?'} />
-          <MyChat
-            chat={
-              '안먹었으면 같이 먹을까?? 먹고 싶은 메뉴가 있으면 말해보겠니?'
+          <FlatList
+            data={dummy_data}
+            renderItem={({item, index}) =>
+              item.position === 'left' ? (
+                <FriendChat data={item} />
+              ) : (
+                <MyChat data={item} nextData={dummy_data[index + 1]} />
+              )
             }
-            time={'12:03AM'}
+            keyExtractor={item => item.id}
+            ListHeaderComponent={() => (
+              <View style={styles.chatDayWrapper}>
+                <Text
+                  style={
+                    styles.chatDay
+                  }>{`${year}년 ${month}월 ${day}일`}</Text>
+              </View>
+            )}
+            showsVerticalScrollIndicator={false}
           />
-          <FriendChat
-            chat={
-              '나는 풍자 또 간집에 나온 소라 편의점의 제육볶음이 너무 먹고싶구나ㅎㅎㅎㅎ'
-            }
-            time={'12:03AM'}
-          />
-          <MyChat chat={'그럼 먹으러 가자구~~~'} time={'12:04AM'} />
         </View>
       </View>
       <View style={{padding: 16, flexDirection: 'row'}}>
@@ -207,5 +320,11 @@ const styles = StyleSheet.create({
     width: 1,
     height: 4,
     backgroundColor: '#d5d5d5',
+  },
+  chatInfoWrapper: {
+    flexDirection: 'row',
+    marginTop: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
