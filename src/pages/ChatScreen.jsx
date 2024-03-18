@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -12,8 +13,8 @@ const leftArrow = require('../assets/icons/leftArrow.png');
 const dummyProfile = require('../assets/images/dummyProfile.png');
 const leftbubble = require('../assets/icons/leftbubbleTriangle.png');
 const rightbubble = require('../assets/icons/rightbubble.png');
+const plus = require('../assets/icons/plus.png');
 
-// '#6297ff
 const MyChat = props => {
   return (
     <View style={[styles.chatRowWrapper, {marginLeft: 'auto'}]}>
@@ -90,6 +91,31 @@ export default () => {
           />
           <MyChat chat={'그럼 먹으러 가자구~~~'} time={'12:04AM'} />
         </View>
+      </View>
+      <View style={{padding: 16, flexDirection: 'row'}}>
+        <TouchableOpacity
+          style={{
+            borderWidth: 1,
+            borderColor: '#efefef',
+            borderRadius: 20,
+            width: 40,
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image source={plus} style={{width: 12, height: 12}} />
+        </TouchableOpacity>
+        <TextInput
+          placeholder="메세지 입력하기"
+          style={{
+            flex: 1,
+            borderWidth: 1,
+            borderColor: '#efefef',
+            borderRadius: 20,
+            marginLeft: 8,
+            paddingHorizontal: 12,
+          }}
+        />
       </View>
     </SafeAreaView>
   );
