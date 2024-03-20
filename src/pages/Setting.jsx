@@ -34,7 +34,7 @@ const menuData = [
   {
     id: 3,
     title: '공지사항',
-    page: '',
+    page: 'Notice',
     icon: announcementIcon,
   },
   {

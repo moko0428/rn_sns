@@ -8,6 +8,7 @@ import BasicCalendar from './pages/BasicCalendar';
 import Home from './pages/Home';
 import Setting from './pages/Setting';
 import Notice from './pages/Notice';
+import NoticeDetail from './pages/NoticeDetail';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,6 +31,7 @@ export default () => {
       <Stack.Screen name="MainTab" component={MainTab} />
       <Stack.Screen name="Detail" component={Detail} />
       <Stack.Screen name="Notice" component={Notice} />
+      <Stack.Screen name="NoticeDetail" component={NoticeDetail} />
     </Stack.Navigator>
   );
 };
