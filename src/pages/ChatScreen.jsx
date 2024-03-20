@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   FlatList,
   Image,
@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Toast from '../components/Toast';
 
 const leftArrow = require('../assets/icons/leftArrow.png');
 const dummyProfile = require('../assets/images/dummyProfile.png');
@@ -172,8 +173,15 @@ export default () => {
   const month = date.getMonth() + 1;
   const day = date.getDate();
 
+  const [toastVisible, setToastVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.safeAreaViewStyle}>
+      <Toast
+        content={'아직 구현되지 않은 기능입니다.'}
+        visible={toastVisible}
+        handleCancel={() => setToastVisible(false)}
+      />
       <View style={styles.mainContainer}>
         <View style={styles.headerWrapper}>
           <TouchableOpacity>
@@ -207,6 +215,7 @@ export default () => {
       </View>
       <View style={{padding: 16, flexDirection: 'row'}}>
         <TouchableOpacity
+          onPress={() => setToastVisible(!toastVisible)}
           style={{
             borderWidth: 1,
             borderColor: '#efefef',
