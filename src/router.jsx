@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Setting from './pages/Setting';
 import Notice from './pages/Notice';
 import NoticeDetail from './pages/NoticeDetail';
+import CustomCameraRoll from './components/CustomCameraRoll';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,6 +33,7 @@ export default () => {
       <Stack.Screen name="Detail" component={Detail} />
       <Stack.Screen name="Notice" component={Notice} />
       <Stack.Screen name="NoticeDetail" component={NoticeDetail} />
+      <Stack.Screen name="CustomCameraRoll" component={CustomCameraRoll} />
     </Stack.Navigator>
   );
 };

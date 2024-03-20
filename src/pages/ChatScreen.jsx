@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+  Dimensions,
   FlatList,
   Image,
   SafeAreaView,
@@ -9,13 +10,20 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import Toast from '../components/Toast';
+import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 
 const leftArrow = require('../assets/icons/leftArrow.png');
 const dummyProfile = require('../assets/images/dummyProfile.png');
 const leftbubble = require('../assets/icons/leftbubbleTriangle.png');
 const rightbubble = require('../assets/icons/rightbubble.png');
 const plus = require('../assets/icons/plus.png');
+const imageIcon = require('../assets/icons/image.png');
+const cameraIcon = require('../assets/icons/camera.png');
+const voiceIcon = require('../assets/icons/voice.png');
+
+const {width} = Dimensions.get('window');
 
 const dummy_data = [
   {
@@ -175,7 +183,17 @@ export default ({route, navigation}) => {
   const day = date.getDate();
 
   const [toastVisible, setToastVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
 
+  const onSelect = data => {
+    console.log('data', data);
+    setSelectedImage(data);
+  };
+  const goToCameraRoll = () => {
+    setModalVisible(false);
+    navigation.navigate('CustomCameraRoll', {onSelect: data => onSelect(data)});
+  };
   return (
     <SafeAreaView style={styles.safeAreaViewStyle}>
       <Toast
@@ -202,21 +220,25 @@ export default ({route, navigation}) => {
               )
             }
             keyExtractor={item => item.id}
-            ListHeaderComponent={() => (
+            ListHeaderComponent={
               <View style={styles.chatDayWrapper}>
-                <Text
-                  style={
-                    styles.chatDay
-                  }>{`${year}년 ${month}월 ${day}일`}</Text>
+                <Text style={styles.chatDay}>
+                  {`${year}년 ${month}월 ${day}일`}
+                </Text>
               </View>
-            )}
+            }
             showsVerticalScrollIndicator={false}
           />
         </View>
+        {selectedImage && (
+          <View style={{position: 'absolute', bottom: 8, right: 16}}>
+            <Image source={selectedImage} style={{width: 60, height: 60}} />
+          </View>
+        )}
       </View>
       <View style={{padding: 16, flexDirection: 'row'}}>
         <TouchableOpacity
-          onPress={() => setToastVisible(!toastVisible)}
+          onPress={() => setModalVisible(!modalVisible)}
           style={{
             borderWidth: 1,
             borderColor: '#efefef',
@@ -240,6 +262,88 @@ export default ({route, navigation}) => {
           }}
         />
       </View>
+      <Modal
+        isVisible={modalVisible}
+        useNativeDriver
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        animationInTiming={200}
+        animationOutTiming={200}
+        backdropOpacity={0}
+        style={{
+          margin: 0,
+          justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          borderTopWidth: 1,
+          borderTopColor: '#828282',
+        }}>
+        <View
+          style={{
+            width: width,
+            backgroundColor: '#fff',
+            paddingTop: 10,
+            height: 176,
+          }}>
+          <View style={{padding: 16, flexDirection: 'row'}}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(!modalVisible)}
+              style={{
+                borderWidth: 1,
+                borderColor: '#efefef',
+                borderRadius: 20,
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <Image
+                source={plus}
+                style={{width: 12, height: 12, transform: [{rotate: '45deg'}]}}
+              />
+            </TouchableOpacity>
+            <TextInput
+              placeholder="메세지 입력하기"
+              style={{
+                flex: 1,
+                borderWidth: 1,
+                borderColor: '#efefef',
+                borderRadius: 20,
+                marginLeft: 8,
+                paddingHorizontal: 12,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              gap: 40,
+              marginLeft: 40,
+            }}>
+            <TouchableOpacity
+              onPress={() => goToCameraRoll()}
+              style={{gap: 4, justifyContent: 'center', alignItems: 'center'}}>
+              <Image source={imageIcon} style={{width: 48, height: 48}} />
+              <Text style={{fontSize: 13, fontWeight: '400', color: '#828282'}}>
+                앨범
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{gap: 4, justifyContent: 'center', alignItems: 'center'}}>
+              <Image source={cameraIcon} style={{width: 48, height: 48}} />
+              <Text style={{fontSize: 13, fontWeight: '400', color: '#828282'}}>
+                카메라
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{gap: 4, justifyContent: 'center', alignItems: 'center'}}>
+              <Image source={voiceIcon} style={{width: 48, height: 48}} />
+              <Text style={{fontSize: 13, fontWeight: '400', color: '#828282'}}>
+                음성녹음
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
