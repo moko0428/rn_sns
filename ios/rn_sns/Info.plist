@@ -55,5 +55,10 @@
 	<string>채팅창에서 카메라를 오픈할 때 사용합니다.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>채팅창에서 카메라를 오픈할 때 사용합니다.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Fonts/Maplestory Light.ttf</string>
+		<string>Fonts/Maplestory Bold.ttf</string>
+	</array>
 </dict>
 </plist>

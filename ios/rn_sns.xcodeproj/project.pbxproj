@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		995D9BA6A29F417A55A46E18 /* libPods-rn_sns-rn_snsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 322C0197E8D8EBA1E5789341 /* libPods-rn_sns-rn_snsTests.a */; };
+		E290829C2BAB9B9500A7D807 /* Maplestory Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E29082992BAB9B9500A7D807 /* Maplestory Bold.ttf */; };
+		E290829D2BAB9B9500A7D807 /* Maplestory Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E290829A2BAB9B9500A7D807 /* Maplestory Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		7AAC4C0C9D501854DB4F26FD /* Pods-rn_sns-rn_snsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rn_sns-rn_snsTests.debug.xcconfig"; path = "Target Support Files/Pods-rn_sns-rn_snsTests/Pods-rn_sns-rn_snsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = rn_sns/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE84EDD2302E328B347AA107 /* libPods-rn_sns.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rn_sns.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E29082992BAB9B9500A7D807 /* Maplestory Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Maplestory Bold.ttf"; sourceTree = "<group>"; };
+		E290829A2BAB9B9500A7D807 /* Maplestory Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Maplestory Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -86,6 +90,7 @@
 		13B07FAE1A68108700A75B9A /* rn_sns */ = {
 			isa = PBXGroup;
 			children = (
+				E290829B2BAB9B9500A7D807 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -146,6 +151,15 @@
 				251EEAA8175599BBE93042B1 /* Pods-rn_sns-rn_snsTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E290829B2BAB9B9500A7D807 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E29082992BAB9B9500A7D807 /* Maplestory Bold.ttf */,
+				E290829A2BAB9B9500A7D807 /* Maplestory Light.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +255,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E290829D2BAB9B9500A7D807 /* Maplestory Light.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				E290829C2BAB9B9500A7D807 /* Maplestory Bold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +484,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = rn_sns/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "프로그래머스앱";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -494,6 +512,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = rn_sns/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "프로그래머스앱";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -580,10 +600,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -651,10 +668,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

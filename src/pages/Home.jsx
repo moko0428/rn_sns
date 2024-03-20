@@ -2,6 +2,7 @@ import {FlatList, Image, SafeAreaView, Text, View} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {friendProfiles} from '../data';
+import fonts from '../styles/fonts.js';
 
 const searchIcon = require('../assets/icons/search.png');
 const addIcon = require('../assets/icons/add.png');
@@ -80,7 +81,12 @@ export default ({navigation}) => {
             marginHorizontal: 16,
           }}>
           <View style={{gap: 2}}>
-            <Text style={{fontWeight: 'bold', fontSize: 18, color: '#333'}}>
+            <Text
+              style={{
+                fontSize: 18,
+                color: '#333',
+                fontFamily: fonts.MAPLE[800],
+              }}>
               이쿠키
             </Text>
             <Text style={{fontWeight: '500', fontSize: 14, color: '#828282'}}>
