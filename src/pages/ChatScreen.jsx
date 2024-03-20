@@ -263,6 +263,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backButton: {
+    width: 40,
+    height: 40,
     fontSize: 40,
   },
   headerTitle: {
