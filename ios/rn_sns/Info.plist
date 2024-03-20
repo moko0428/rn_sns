@@ -51,6 +51,8 @@
 	<false/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>채팅창에서 앨범을 오픈할 때 사용합니다.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>채팅창에서 카메라를 오픈할 때 사용합니다.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>채팅창에서 카메라를 오픈할 때 사용합니다.</string>
 </dict>

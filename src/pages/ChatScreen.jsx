@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import Toast from '../components/Toast';
-import {CameraRoll} from '@react-native-camera-roll/camera-roll';
+// import ImagePicker from 'react-native-image-crop-picker';
 
 const leftArrow = require('../assets/icons/leftArrow.png');
 const dummyProfile = require('../assets/images/dummyProfile.png');
@@ -194,6 +194,16 @@ export default ({route, navigation}) => {
     setModalVisible(false);
     navigation.navigate('CustomCameraRoll', {onSelect: data => onSelect(data)});
   };
+  const handleCamera = () => {
+    ImagePicker.openCamera({
+      width: 300,
+      height: 400,
+      cropping: true,
+      multiple: true,
+    }).then(image => {
+      console.log(image);
+    });
+  };
   return (
     <SafeAreaView style={styles.safeAreaViewStyle}>
       <Toast
@@ -328,6 +338,7 @@ export default ({route, navigation}) => {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={() => {}}
               style={{gap: 4, justifyContent: 'center', alignItems: 'center'}}>
               <Image source={cameraIcon} style={{width: 48, height: 48}} />
               <Text style={{fontSize: 13, fontWeight: '400', color: '#828282'}}>
