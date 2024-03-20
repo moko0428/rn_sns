@@ -7,6 +7,7 @@ import AnimateExample from './pages/AnimateExample';
 import Detail from './pages/Detail';
 import BasicCalendar from './pages/BasicCalendar';
 import BasicCarousel from './pages/BasicCarousel';
+import Home from './pages/Home';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -14,7 +15,7 @@ const Tab = createBottomTabNavigator();
 const MainTab = () => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Tab.Screen name="Animation" component={AnimateExample} />
+      <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="BasicCalendar" component={BasicCalendar} />
       <Tab.Screen name="BasicCarousel" component={BasicCarousel} />

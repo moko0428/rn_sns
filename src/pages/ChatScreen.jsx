@@ -167,7 +167,8 @@ const FriendChat = ({data}) => {
   );
 };
 
-export default () => {
+export default ({route, navigation}) => {
+  const {name} = route.params.params;
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -184,10 +185,10 @@ export default () => {
       />
       <View style={styles.mainContainer}>
         <View style={styles.headerWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <Image source={leftArrow} style={styles.backButton} />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>이민구</Text>
+          <Text style={styles.headerTitle}>{name}</Text>
           <View style={styles.backButton} />
         </View>
         <View style={styles.chattingScreen}>
